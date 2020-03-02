@@ -2,6 +2,8 @@
 #include "iostream" // 这个是系统库
 #include <assert.h> // assert是断言的意思 可以不使用cout endl这种输出 可以直接用这个assert做断言
 #include <vector> // 面向对象的动态数组库 系统自带 要和下面的std命名空间一块儿用
+#include <string.h> // 用于操作string的库
+#include <string> // 不引入string可以 因为引入了iostream 这个里头包含了string
 using namespace std; // 这个是系统库中包含的命名空间
 // 其实printf也可以输出 只是printf是c语言中的输出方法
 
@@ -125,27 +127,27 @@ int main(void) {
   // vector<int> vec = {1}; 在c++ 98 中不允许直接对vector列表进行初始化赋值 会报错的
   // 不过c++ 11中可以直接赋值
 
-  //默认初始化,不带参数的构造函数初始化
+  // 默认初始化,不带参数的构造函数初始化
   vector<int> vec1;
   vec1.push_back(5);
   cout << vec1[0] << endl; // 5
-  //带参数的构造函数初始化
-  vector<int> vec2(10); //初始化10个默认值为0的元素
-  vector<int> vec3(10, 1);//初始化10个值为1的元素
+  // 带参数的构造函数初始化
+  vector<int> vec2(10); // 初始化10个默认值为0的元素
+  vector<int> vec3(10, 1);// 初始化10个值为1的元素
   cout << vec2[8] << endl; // 0 因为每项都是0
   cout << vec3[8] << endl; // 1 每项都是1
 
-  //通过数组地址初始化
+  // 通过数组地址初始化
   int test[5] = { 1, 2, 3, 4, 5 };
   vector<int> vec4(test, test + 5);
   cout << vec4[4] << endl; // 5
 
-  //通过同类型的vector进行初始化
+  // 通过同类型的vector进行初始化
   vector<int> vec5(10, 1);
   vector<int> vec6(vec5);
   cout << vec6[5] << endl; // 1
 
-  //通过迭代器进行初始化
+  // 通过迭代器进行初始化
   vector<int> vec7(10, 99);
   vector<int> vec8(vec7.begin(), vec7.end());
   vec8.push_back(88);
@@ -174,10 +176,10 @@ int main(void) {
   cout << str1 << endl;
 
   /**
-   * c++中的字符是以ASCII码表示的
+   * 
    * ASCII码是最早的西欧那边企图用 7bit或8bit 也就是128或256个数来表示一些字符的包括a-Z 0-9 以及一些特殊符号等
    * 常用的:
-   *  0: 48 0x30 
+   *  0: 48 0x30
    *  a: 97 0x61
    *  A: 65 0x41
    *  DEL: 127 0x7F 键盘上的按键
@@ -230,9 +232,28 @@ int main(void) {
    *      UTF-8的缺点就是由于它是变长的, 所以不利于内部随机访问, 也就是效率较低
    * 
    *    2. UTF-16: { UTF-16BE(big-endian), UTF-16LE(little-endian) }
-   *      特点是定长两字节 方便内部随机访问 但是有字节序的问题
+   *       特点是定长两字节 方便内部随机访问 但是有字节序的问题
+   *       所以不能作为外部编码, 意思就是假设当进行网络传输的时候 必须还得先知道到底是大端还是小端
+   *       比如 "h" 这个字符
+   *         会表示成 00 68 或 68 00 (一个大端 FF, 一个小端 FE)
+   *         utf-16固定是两字节的方式
    *    3. UTF-32: { UTF-32BE(big-endian), UTF-32LE(big-endian) }
-   *      特点是定长两字节 方便内部随机访问 但是有字节序的问题
+   *       特点是定长四字节 方便内部随机访问 但是有字节序的问题
+   *       而且太占地儿
+   * 
+   *    一般编码错误的根本原因 在于编码方式和解码方式不统一
+   * 
+   *    注意: windows 文件可能有BOM(byte order marker) 就是对字节序的一个标识之类的, 如果要在其他平台使用可以去掉BOM
+   * 
+   * 
+   *    Unicode和UTF-8之间的关系
+   *      简单地说, Unicode是一个字符集, 里面给每个字都定义了一个唯一的编号(码位)
+   *      是一个字符编码的标准规范, UTF8之类的是针对这个规范的实现
+   *      而UTF-8/16/32之类的是对这些码位进行编码的方式
+   *      比如直接你可以直接把这些码位转成二进制存进电脑去
+   *      像UTF8这种编码方式 比如存个“中”字 去Unicode表里头找它对应的码位
+   *      然后把它的码位按照上面记录的方式 编码成1到4个字节存到内存中
+   *      https://www.zhihu.com/question/23374078
    */
   char c1 = 0; // 0x00
   char c2 = '\0'; // 0x00
@@ -241,5 +262,113 @@ int main(void) {
   cout << c2 << endl; // 啥也不输出
   cout << c3 << endl; // 0
   cout << int(c3) << endl; // 48 因为 '0' 在内存里是 0x30 转成10进制就是48
+
+  /**
+   * 字符串的指针表示方法 
+   */
+  char dingStr2[] = { "helloworld" }; // 这样也可以
+  char dingStr3[11] = { "helloworld" };
+  char *dingStr1 = "helloworld"; // dingStr 是指针变量 这个相当于指向了一个字符串的常量
+  // char dingStr2 = "a"; // 这样不可以
+  // 对于带*的那种指针变量 是存在内存的堆里 而上面那两种是存在栈区
+  // for (int index = 0; index < 10; index++) { // 不应该对那个 '\0' 的结束符做操作
+  //   // c++中的＋1不是js里那种简单的字符串加数
+  //   // 而是对内存中的二进制进行 +1 相当于说 "h" 字母的二进制 +1 了, 然后对应到ASCII表里应该就是i
+  //   dingStr2[index] += 1;
+  //   cout << dingStr2[index] << endl;
+  // }
+  cout << dingStr1[0] << endl; // h
+  cout << (dingStr1) << endl; // helloworld
+  cout << (dingStr1 + 1) << endl; // elloworld
+  // for (int index = 0; index < 8; index++) { // 不应该对那个 '\0' 的结束符做操作
+  //   dingStr1[index] += 1; // 这个会报错的 指针所指向的区是不可改的 上面那个是个常量
+  //   cout << dingStr2[index] << endl;
+  // }
+
+  // 但是当指针直接指向了一个栈中的区的地址时候可以改
+  char dingStr4[11] = { "helloworld" };
+  char *dingStr5 = dingStr4;
+  for (unsigned int index = 0; index < 10; index++) {
+    dingStr5[index] += 1;
+    cout << dingStr5[index] << endl;
+  }
+
+  char dingStr6[11] = "helloworld";
+  char dingStr7[11] = "helloworld";
+  char ding[] = "dddd";
+  cout << ding << endl; // dddd
+  cout << dingStr6 << endl;
+  cout << (dingStr4 == dingStr6) << endl; // 0
+  cout << (dingStr7 == dingStr6) << endl; // 0
+  // dingStr6 = dingStr7; // 这个会报错 左值不允许改
+  dingStr5 = dingStr7;
+  cout << dingStr5[0] << endl; // h 但是指针可以改
+  // 相当于 一个正常变量本身不可改 但是这个变量指向的区内的东西可改
+  // 比如 char ding1[10] = "niubi" 这个ding1不能改 但是 ding[index] 可改
+  // 而对于指针变量 本身可改 但是所指向的内容不一定能改
+  // 比如 char *ding2 = "niubi" 这种情况下 ding2[index] 不能改
+  // 但是 ding 本身可以指向别的变量比如 ding1 = ding2 然后ding1[index] 就可改了
+  char dingStr8[] = "ding";
+  cout << strlen(dingStr8) << endl; // 4
+  char dingStr9[] = "ding2";
+  cout << strcmp(dingStr8, dingStr9) << endl; // s1 < s2 返回小于0 s1 > s2 返回大于0 按ASCII 从左至右挨个字符比较大小 知道遇到不一样的或者 /0
+  strcpy(dingStr8, dingStr9); // 把后面的一个个拷贝到前一个字符串中
+  cout << dingStr8 << endl; // ding2
+  strncpy(dingStr8, dingStr9, 2); // 把字符串dingStr9中的前2个拷贝到dingStr8中
+  // strcat(dingStr8, dingStr9); // 将字符串dingStr9拼接到dingStr8后面
+  strchr(dingStr8, 'n'); // 字符串n第一次在dingStr8中出现的位置
+  strstr(dingStr8, dingStr9); // 字符串dingStr8中dingStr9第一次出现的位置
+  // 以上的api有的不安全 因为比如拼接的时候可能前面的字符串内存容量不够
+  // 比如上面那个strcat拼接的方法,
+  // 如果前面的容量只有10 加上后面的溢出的话 就会把这个字符串在内存中后面的位置给覆盖,
+  // 如果被覆盖的位置还有别的逻辑的话, 那肯定会出bug
+  // 所以开发时候可以开启一个 "宏" 来允许使用这种api
+  // 同时还有一些比较安全的方法可以使用
+  char dingStr10[16] = { "a" };
+  char dingStr11[16] = { 0 };
+  cout << strlen(dingStr10) << endl; // 1
+  cout << strlen(dingStr11) << endl; // 0
+  // for 循环定义index的时候 前面最好加上unsigned表示无符号数
+  // 否则的话回报警告说用一个有符号的作为数组下标
+  signed short aa = 65535;
+  cout << (aa + 2) << endl;
+
+  // 以下的是安全版本
+  // strlen_s(dingStr8);
+  // strcpy_s(dingStr8, 10, dingStr9);
+  // strcat_s(dingStr8, 10, dingStr9);
+
+
+  /**
+   * c++标准库中提供了string类型专门表示字符串
+   * #include <string>
+   * using namespace std;
+   * 可以更方便和安全的管理字符串
+   */
+  string s1; // 会有一些默认的资源分配原则 capacity默认是15
+  string s2 = "helloworld";
+  string s3("helloworld");
+  string s4 = string("hellowworld");
+  cout << s1 << " " << s2 << " " << s3 << " " << s4 << " " << endl;
+  cout << s2.length() << endl; // 10
+  cout << s2.size() << endl; // 10
+  cout << s2.capacity() << endl; // 22
+  cout << ( s2 == s3 ) << endl; // 1
+  string s5 = "ding";
+  string s6 = "1";
+  cout << s5 + s6 << endl; // ding1
+
+  /**
+   * https://blog.csdn.net/z_qifa/article/details/77744482
+   * 详解sizeof、strlen、length、size的区别
+   */
+
+
+  /**
+   * const 关键字修饰离他近的
+   * 比如:
+   *  const char* ding = "xxxx" 这个它修饰char*
+   *  char* const ding = "xxxx" 这个它修饰ding 
+   */
   return 0;
 }
