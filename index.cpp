@@ -370,5 +370,54 @@ int main(void) {
    *  const char* ding = "xxxx" 这个它修饰char*
    *  char* const ding = "xxxx" 这个它修饰ding 
    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /**
+   * 指针
+   *  
+   * 
+   *  
+   */
+
+  int test1 = 11;
+  // int dd = &test1; 这样会报错
+  int* test2 = &test1;
+  cout << &test1 << endl; // 可以打印出地址
+  cout << test2 << endl; // 可以访问地址
+  cout << *test2 << endl; // 11 可以访问这个地址对应的值
+  // 加入存了个数 float test = 3.14f;
+  // 这个test存到内存中是一串数, 但是如果按照整形翻译的话肯定不会得到3.14
+  // 那为啥它就能打印出3.14呢
+  // 因为这个是编译器决定的, 编译器从内存中拿到这串数 然后会根据记录下来的类型
+  // 去做转换 根据IEEE 转换成浮点数
+
+
+  
+
   return 0;
 }
