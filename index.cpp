@@ -576,5 +576,57 @@ int main(void) {
    * 
    */
 
+  /**
+   * 指针不管啥类型的 都是默认的4字节 
+   */
+
+  // char aaa = 'a';
+  // char ccc = 'b';
+  // char* bbb = &aaa;
+  // bbb = &ccc; 这个可以
+  // &ccc = xxx 不可以
+  char aaa = 'a';
+  char* bbb = &aaa;
+  char ddd = *bbb;
+  cout << ddd << endl; // a 会得到实际上aaa的值
+  cout << (*bbb + 1) << endl; // 98 *bbb是取值 得到a 然后 +1 是用a的utd8或ascii码+1得到b (98)
+  // cout << *(bbb + 1) << endl; // bbb是一个地址 +1 之后这块地址加个*表示取值 会往右边走4字节
+
+  char eee = 'a';
+  char* fff = &eee;
+  *fff = 'b';
+  cout << *fff << endl; // b *fff 就相当于 eee 这个变量
+  cout << eee << endl; // b
+
+  // 左值是必须有办法能够获取到明确地址的 右值是不能获取到明确地址的
+  
+  char* ggg = ++fff; // 所以他是先加 再赋值
+  /**
+   * ++fff 在汇编中长这样
+   *   (addr)    (act)       (执行动作)
+   *  003716E2    mov    eax, dword ptr [fff] // eax是寄存器的一种 dword ptr [fff] 指的是把 fff 移动到eax这个寄存器中
+   *  003716E5    add    eax, 1               // 在eax寄存器中给fff +1
+   *  003716E8    mov    dword ptr [fff], eax // 从eax中把 fff 移动回去
+   *  003716Eb    mov    ecx, dword ptr [fff] // 把fff移动到 ecx 中 ecx也是寄存器的一种
+   *  003716EE    mov    dword ptr [ggg], ecx // 从 ecx 中移动到 ggg
+   */
+  char* hhh = fff++; // 然后他是先赋值 再加
+  /**
+   * fff++ 在汇编中长这样
+   *   (addr)    (act)       (执行动作)
+   *  003716E2    mov    eax, dword ptr [fff] // eax是寄存器的一种 dword ptr [fff] 指的是把 fff 移动到eax这个寄存器中
+   *  003716E5    mov    dword ptr [ggg], eax // 把eax中的给移动到 ggg
+   *  003716E8    mov    ecx, dword ptr [fff] // 移动 fff 到 ecx 中
+   *  003716Eb    add    ecx, 1 // 在 ecx 中给它 +1
+   *  003716EE    mov    dword ptr [fff], ecx // 从 ecx 中移动到 fff
+   */
+  /**
+   * fff-- 和 --fff 同理 
+   */
+  /**
+   * ++fff 得到的只是一个地址值的副本 所以是右值
+   */
+
+
   return 0;
 }
