@@ -627,6 +627,20 @@ int main(void) {
    * ++fff 得到的只是一个地址值的副本 所以是右值
    */
 
+  /**
+   *  *++fff / *fff++ 等于 *(++fff)/*(fff++)
+   */
 
+  /**
+   * c = a+++b 等于 a++ +b
+   * c = a++++b 等于 a++ ++b
+   * ++*++a 等于 (++(*(++a)))
+   */
+
+  int number0 = 1;
+  int* number1 = &number0;
+  // 首先number1是个指针 指针++之后得到该指针的下一个位置 然后*号在右值时表示取值 也就是把number1下一个位置的值取出来了 之后这个值再++
+  int number2 = ++*++number1;
+  cout << number2 << endl;
   return 0;
 }
