@@ -4,11 +4,13 @@
 #include <vector> // 面向对象的动态数组库 系统自带 要和下面的std命名空间一块儿用
 #include <string.h> // 用于操作string的库
 #include <string> // 不引入string可以 因为引入了iostream 这个里头包含了string
+#include <memory> // 这个库里头有auto_ptr智能指针
 using namespace std; // 这个是系统库中包含的命名空间
 // 其实printf也可以输出 只是printf是c语言中的输出方法
 
 // command + R 或者 + T是快捷键的编译
 int main(void) {
+
   int a = 10;
   int b = 20;
   // cout 指的是c++中的输出 标准输出
@@ -801,6 +803,57 @@ int main(void) {
    *  
    * 
    */
+
+
+  /**
+   * 指针虽好 但是容易发生危险
+   * 
+   * 更安全的指针 - 智能指针
+   * 不适用指针 使用更安全的方式 - 引用
+   * 
+   */
+
+  /**
+   * c++中有四种常用的智能指针
+   * 
+   * unique_ptr shared_ptr weak_ptr auto_ptr(在c++17中被废弃了)
+   * 
+   * 1. auto_ptr
+   *  可以指向一个对象(类或者int或者char等等都行), 在auto_ptr指针被销毁时 所指向的那个对象自动被delete
+   *  如果一个auto_ptr指向了某个对象 之后又有另外一个auto_ptr指向了这个对象
+   *  那之前的那个auto_ptr就会指向nullptr(失效, 不是NULL)
+   *  之所以不是NULL 是因为NULL是属于C语言的遗留 并且NULL有二义性 它可以指指针是个NULL也可以只普通数据是NULL
+   *  所以这里一般规范一些就用nullptr表示指针为空
+   * 
+   */
+
+  // {
+  //   auto_ptr<int> p1 = new int(10); // 不晓得为毛这里会报错 说auto_ptr未定义
+  //   cout << *p1 << endl; // 10
+  //
+  //   auto_ptr<string> languages[5] = {
+  //     auto_ptr<string>(new string("a")),
+  //     auto_ptr<string>(new string("b")),
+  //     auto_ptr<string>(new string("c")),
+  //     auto_ptr<string>(new string("d")),
+  //     auto_ptr<string>(new string("e")),
+  //   }
+  //
+  //   // 这里可以正常打印
+  //   for (int i = 0; i < 5; i++) {
+  //     cout << *languages[i] << endl;
+  //   }
+  //
+  //   // 这里将languages[2]的指针让渡给了p2
+  //   auto_ptr<string> p2;
+  //   p2 = languages[2];
+  //
+  //   // 这里顶多打印到前两位 当打印到第三位时候 因为指针被让渡了 就会报错
+  //   for (int i = 0; i < 5; i++) {
+  //     cout << *languages[i] << endl;
+  //   }
+  // }
+  
 
   return 0;
 }
