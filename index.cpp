@@ -855,5 +855,210 @@ int main(void) {
   // }
   
 
+  /**
+   * unique_ptr 专属智能指针
+   * 它是专属所有权 只能被一个对象持有 不支持赋值和复制
+   * 
+   * unique_ptr 不允许复制和赋值 但是允许移动(move)
+   * 能够转移所有权
+   * std::move()
+   * 
+   */
+
+  // auto是自动类型推导 c++11 以上支持 w 返回的是一个unique_ptr的智能指针 会在堆中开辟一块儿空间
+  // auto w = std::make_unique<int>(10);
+  // cout << *(w.get()) << endl; // get会得到指针 得到指向刚刚在堆中开辟的那块儿空间的指针 加*是把指针的值输出
+  // auto w2 = w; // 这个会报错 因为unique_ptr不支持重新赋值
+  // auto w2 = std::move(w); // w2会获得内存的所有权 w此时等于nullptr
+  // cout << ((w.get() != nullptr) << endl;
+
+  /**
+   *
+   * shared_ptr 可以共享的智能指针
+   * 当创建了一个堆内存中的对象的时候 每有一个智能指针指向该对象的时候 就会在内部给引用计数+1
+   * 当这个引用计数变成0了 就会释放该内存
+   * 但是也有个问题 就是循环引用的问题 比如A中引用了B  B中引用了A 这俩想释放都得等对方先释放
+   * 就特么锁在这儿了 从而造成内存泄漏
+   * 
+   * 然后就出现了一种叫做 weak_ptr 的智能指针
+   * weak_ptr和shared_ptr一起用的
+   * A可以使用shared_ptr指向一个对象 B可以使用weak_ptr也指向同一个对象
+   * 但是只有使用了shared_ptr的A会对该对象的引用计数 +1 使用weak_ptr的B不会给引用计数+1
+   * 同时如果A被干掉的话 那么使用了weak_ptr的B也会被直接干掉
+   * 因为B主要是依附于A的 可以使用A的一些能力 相当于一个观察者模式
+   * 
+   */
+
+  {
+    auto wA = shared_ptr<int>(new int(20));
+    {
+      auto wB = wA;
+      cout << (wB.get() != nullptr ? *wB.get() : -1) << endl; // 20
+      cout << (wA.get() != nullptr ? *wA.get() : -1) << endl; // 20
+      cout << wA.use_count() << endl; // 2
+      cout << wB.use_count() << endl; // 2
+    }
+    cout << wA.use_count() << endl; // 1 因为出了上边的那个花括号 wB 就被干掉了
+  }
+
+  // auto wAA = std::make_shared<int>(30);
+  // auto wBB = std::move(wAA);
+  // wAA 就会指向 nullptr
+  // wBB 就变成了那个指针
+  // wAA.use_cout() // 0
+  // wBB.use_cout() // 1
+
+
+
+
+  /**
+   * c++ 中的引用
+   * 引用是一种特殊的指针 不允许修改的指针
+   * 相当于说有个指针指向了内存中的这块儿区域 那就不允许再让它指向别的区域
+   * 
+   * 使用普通指针有什么问题:
+   *  1. 空指针
+   *  2. 野指针
+   *  3. 不知不觉改变了指针的值 却继续使用
+   * 
+   * 使用引用 则可以:
+   *  1. 不存在空引用
+   *  2. 必须初始化
+   *  3. 一折引用永远指向它初始化的那个对象
+   * 
+   * 引用的基本使用 可以认为是指定变量的别名
+   * 使用时可以认为就是比变量本身
+   */
+
+  int dingye = 1, liuye = 233;
+  int& dingye2 = dingye;
+  dingye2 = 666;
+  cout << dingye << endl; // 666
+  cout << dingye2 << endl; // 666
+  dingye2 = liuye;
+  cout << dingye << endl; // 233
+  cout << dingye2 << endl; // 233
+
+  /**
+   * 有了指针为什么还用引用
+   *   使用了支持函数运算符重载
+   *  
+   * 有了引用为什么还用指针 
+   *   为了兼容C语言
+   */
+
+
+  /**
+   * switch 和 if 的性能
+   * 
+   * 当分支比较少的时候无差别
+   * 当多了 switch 效率高
+   * 
+   * 因为翻译成汇编之后
+   * if 的逻辑为:
+   *  当不满足时候会跳转到下一个地址
+   *  当满足会执行当前的逻辑
+   *  相当于一个二叉树
+   *         条件1
+   *          |
+   *     |             |
+   *    满足        不满足条件2
+   *                   |
+   *          |                     |
+   *         满足                不满足条件3
+   *                                |
+   *                               ...
+   * 
+   * 
+   * 而 switch 的汇编大概是
+   * 1. 先把要判断的条件放进exa寄存器
+   * 2. 然后判断条件是否和case1想等
+   * 3. 如果想等直接跳转到case1对应的代码块
+   * 4. 如果不想等就判断和case2是否相等
+   * 5. 以此类对
+   * 所以相当于是一开始就构建了一张表 一张条件表
+   * 一次从表里找到合适的条件然后进行跳转
+   * 
+   */
+
+
+
+  /**
+   * 自定义结构 -- 枚举
+   * 
+   *  使用 #define和const可以创建符号常量 使用enum不仅可以创建符号常量
+   *  还能定义新的数据类型
+   * 
+   */
+
+  // 引妞闷儿 今天刚知道原来它这么读啊
+  enum myWeek { Monday, Tuesday, Wednesday, Thuersday, Friday, Saturday, Sunday }; 
+  myWeek weekday;
+  weekday = Monday;
+  weekday = Tuesday;
+
+  // 打印的话会得到它的索引
+  cout << weekday << endl; // 1
+  weekday = Wednesday;
+  cout << weekday << endl; // 2
+  weekday = Monday;
+  cout << weekday << endl; // 0
+
+  // weekday = 1; // 会报错
+
+  // 可以强制类型转换
+  weekday = myWeek(1);
+  cout << weekday << endl; // 1
+  weekday = myWeek(2);
+  cout << weekday << endl; // 2
+  weekday = myWeek('a');
+  cout << weekday << endl; // 97
+
+  // enum 内部的类型是int类型
+  int weekNum = Monday;
+  cout << weekNum << endl; // 0
+
+  enum myEnum { Ding1 = 'a', Ding2 = 666 };
+
+  myEnum dingEnum;
+  dingEnum = Ding1;
+
+  cout << dingEnum << endl; // 97
+  dingEnum = Ding2;
+  cout << dingEnum << endl; // 666
+
+
+  /**
+   * 自定义类型 -- 结构体与联合体
+   * 结构体 struct(struction)
+   * 联合体 union
+   */
+
+  // 联合体
+  union Score { // 联合体内部的东西使用共同的一块儿空间
+    double sc;
+    char level;
+  };
+
+  struct Student { // 结构体
+    char name[10];
+    int age;
+    Score s; // 联合体
+  };
+
+  cout << sizeof(Score) << endl; // 8
+  cout << sizeof(Student) << endl; // 24
+
+  Student d1;
+  d1.age = 18;
+  d1.s.level = 'a';
+  // d1.name = 'ding'; // 这样会报错 因为 char name[] name是个数组名字 不能作为左值
+  char name[10] = "ddd";
+  // char* name2 = &name; // 会报错的
+  cout << *name << endl; // d
+  cout << name << endl; // ddd
+  // strcpy_s(d1.name, 'ding'); // 所以想给d1.name 赋值得这么赋
+
+
   return 0;
 }
