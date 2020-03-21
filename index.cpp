@@ -10,7 +10,8 @@ using namespace std; // 这个是系统库中包含的命名空间
 
 // command + R 或者 + T是快捷键的编译
 int main(void) {
-
+  int arr0[5] = { 1,2,3,4,5 };
+  cout << *arr0 << endl; // 直接输出arr0的话是一个地址 *arr0的会指向arr0的第一个
   int a = 10;
   int b = 20;
   // cout 指的是c++中的输出 标准输出
