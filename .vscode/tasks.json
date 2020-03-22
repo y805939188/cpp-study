@@ -6,12 +6,16 @@
     {
       "type": "shell",
       "label": "g++ build active file",
-      "command": "/usr/bin/g++",
+      "command": "g++",
       "args": [
         "-g",
         "${file}",
+        "-l",
+        "/Users/dingyubo/Desktop/c++test/mylib/**",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "${fileDirname}/${fileBasenameNoExtension}",
+        // "-stdlib",
+        // "libstdc++",
       ],
       "options": {
         "cwd": "/usr/bin"
