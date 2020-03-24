@@ -10,12 +10,9 @@
       "args": [
         "-g",
         "${file}",
-        "-l",
-        "/Users/dingyubo/Desktop/c++test/mylib/**",
+        "${fileDirname}/mylib/ding.cpp",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}",
-        // "-stdlib",
-        // "libstdc++",
+        "${fileDirname}/${fileBasenameNoExtension}"
       ],
       "options": {
         "cwd": "/usr/bin"
@@ -23,7 +20,27 @@
       "problemMatcher": [
         "$gcc"
       ],
-      "group": "build"
-    }
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "run build",
+      "command": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "options": {
+        "cwd": "/usr/bin"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      
+    },
   ]
 }
