@@ -11,6 +11,7 @@
         "-g",
         "${file}",
         "${fileDirname}/mylib/ding.cpp",
+        "${fileDirname}/myclass/Complex.cpp",
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}"
       ],
