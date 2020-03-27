@@ -9,6 +9,8 @@ class Complex {
     
     Complex(const Complex& x); // 拷贝构造
 
+    void PrintVal();
+
     // 逻辑可以写在头文件中
     
     // const 修饰这整个函数 表示函数体内部的成员变量都不能修改
@@ -40,6 +42,11 @@ class Complex {
     // 对等号运算符做重载
     // 等号的标准运算符重载要返回一个引用
     Complex& operator= (const Complex& x);
+
+    Complex& operator++ (); // 前置++
+    Complex operator++ (int); // 后置++
+
+    // Complex
 
   private:
     double _a;

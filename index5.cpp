@@ -43,6 +43,8 @@ int main(void) {
   // 这种写法也可以 相当于直接调用了 拷贝构造
   Complex complex5(complex4);
 
+  complex5.PrintVal();
+
 
 
 

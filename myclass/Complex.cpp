@@ -71,6 +71,29 @@ Complex& Complex::operator= (const Complex& x) {
   return *this; // 返回当前对象的this的间接引用
 }
 
+Complex& Complex::operator++ () {
+  _a++;
+  _b++;
+  // 一般都返回引用
+  // 直接返回值的话 会产生拷贝构造
+  return *this;
+}
+
+// 这里用一个int区分是前置还是后置 ↓
+Complex Complex::operator++ (int) {
+  // 为什么这里必须得用指针的形式
+  Complex tmp(*this);
+  _a++;
+  _b++;
+  // 还有为啥这里不能也返回一个指针
+  return tmp;
+}
+
+void Complex::PrintVal () {
+  cout << "这里的this是" << ':' << (this) << endl; // 打印一个地址
+  // cout << "这里的this*是" << ':' << (*this) << endl;
+}
+
 
 Complex::~Complex() {
   cout << "执行了析构函数" << endl;
