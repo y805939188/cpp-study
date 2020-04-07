@@ -1,0 +1,21 @@
+:global {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .custom-loading-icon {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .ant-spin {
+      & > span {
+        font-size: 80px;
+        i {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+  }
+}

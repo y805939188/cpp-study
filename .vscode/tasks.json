@@ -1,56 +1,19 @@
 {
-// 有关 tasks.json 格式的文档，请参见
-  // https://go.microsoft.com/fwlink/?LinkId=733558
   "version": "2.0.0",
   "tasks": [
     {
       "type": "shell",
-      "label": "g++ build active file",
-      "command": "g++",
+      "label": "compile",
+      "command": "/usr/bin/clang++",
       "args": [
         "-g",
         "${file}",
         "${fileDirname}/mylib/ding.cpp",
         "${fileDirname}/myclass/Complex.cpp",
+        "${fileDirname}/myclass/DingTest.cpp",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
-      ],
-      "options": {
-        "cwd": "/usr/bin"
-      },
-      "problemMatcher": [
-        "$gcc"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    },
-    {
-      "type": "shell",
-      "label": "run build",
-      "command": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": [],
-      "options": {
-        "cwd": "/usr/bin"
-      },
-      "problemMatcher": [
-        "$gcc"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    },
-    {
-      "type": "shell",
-      "label": "clang build active file",
-      "command": "/usr/bin/clang",
-      "args": [
-        "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "${fileDirname}/${fileBasenameNoExtension}",
+        "-std=c++11" // 执行版本 c++17 c++2a等
       ],
       "options": {
         "cwd": "/usr/bin"
@@ -59,6 +22,24 @@
         "$gcc"
       ],
       "group": "build"
+    },
+    {
+      "label": "compileRun",
+      "type": "shell",
+      "command": "./${fileBasenameNoExtension}",
+      //依赖compile task(刚刚创建的那个 ，执行该task之前先执行build
+      "dependsOn": [ "compile" ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        //自动聚焦
+        "focus": true,
+        //共享控制台，利用之前的控制台，并不重新创建
+        "panel": "shared",
+        "showReuseMessage": true,
+        //启动之前清理控制台输出
+        "clear": true
+      }
     }
   ]
 }

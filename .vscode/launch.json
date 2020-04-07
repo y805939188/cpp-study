@@ -5,17 +5,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "g++ build and debug active file",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
-      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "name": "Debug",
+      // workspaceFolder 表示当前打开的根目录
+      // fileBasenameNoExtension 表示当前被激活的文件不带后缀的格式
+      // 比如当前正鼠标聚焦在 a.cpp 那fileBasenameNoExtension就是a
+      "program": "${workspaceFolder}/${fileBasenameNoExtension}", // 对应要调试那个文件
       "args": [],
-      "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "lldb",
-      "preLaunchTask": ["g++ build active file", "run build"]
+      "preLaunchTask": "compile" // 会根据这个label把可执行文件给build出来
     }
   ]
 }

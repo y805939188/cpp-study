@@ -7,7 +7,7 @@ DingTest::DingTest() {
   cout << "执行了默认的构造函数" << endl;
 }
 // 返回一个引用 等号的重载要这么写 加上 &
-DingTest& DingTest::operator= (int a) {
+DingTest DingTest::operator= (int a) {
   _a = a;
   return *this; // 返回当前对象的this的间接引用
 }
