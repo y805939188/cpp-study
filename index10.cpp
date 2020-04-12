@@ -28,7 +28,7 @@ class Child: public Parent {
  * 一个类的实例在内存中的表现
  * 实际就只包含它的成员属性以及一个指向父类的所有virtual函数的指针
  * 所以windows下sizeof一个实例的话 得到的是它的成员属性的大小加上一个4字节的virtual指针大小
- * 然后指向virtual虚函数数组的这个指针中 存放的也是指针 每个指针指向不同的virtual虚函数
+ * 然后指向virtual虚函数数组的这个指针中 存放的也是指针 每个指针指向不同的virtual虚函数 
  * 
  * 但是mac下暂时不知道
  * 
