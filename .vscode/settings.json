@@ -24,6 +24,17 @@
     "string_view": "cpp",
     "unordered_map": "cpp",
     "vector": "cpp",
-    "new": "cpp"
+    "new": "cpp",
+    "deque": "cpp",
+    "map": "cpp",
+    "utility": "cpp",
+    "__config": "cpp",
+    "__bit_reference": "cpp",
+    "__cxx_version": "cpp",
+    "__split_buffer": "cpp",
+    "__tree": "cpp",
+    "functional": "cpp",
+    "initializer_list": "cpp",
+    "list": "cpp"
   }
 }
