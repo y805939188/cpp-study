@@ -1,5 +1,2 @@
-**/*.dSYM
-**/*.dSYM/**
 *.dSYM
-
-
+.DS_Store
