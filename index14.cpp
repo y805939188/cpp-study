@@ -111,6 +111,24 @@ int main(void) {
   }
 
 
+  iter = studentSocres.begin();
+  cout << "niubi::" << &iter << endl; // 是一个地址
+  while (iter != studentSocres.end()) {
+    if (iter -> second > 90) {
+      // studentSocres.erase(iter); // 注意一定要++否则erase会让iter这个迭代器失效
+      studentSocres.erase(iter++);
+      // iter = studentSocres.erase(iter++); // 返回值是下一个迭代器
+    } else {
+      iter++;
+    }
+  }
+
+for_each(studentSocres.begin(), studentSocres.end(), Display());
+
+  studentSocres.find("ding1");
+  int bool_num = studentSocres.erase("ding1");
+  // bool_num 1 是成功 0 是失败
+  studentSocres.erase(studentSocres.begin(), studentSocres.end());
 
 
 
