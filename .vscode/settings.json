@@ -35,6 +35,10 @@
     "__tree": "cpp",
     "functional": "cpp",
     "initializer_list": "cpp",
-    "list": "cpp"
+    "list": "cpp",
+    "__threading_support": "cpp",
+    "chrono": "cpp",
+    "__functional_base": "cpp",
+    "iomanip": "cpp"
   }
 }
