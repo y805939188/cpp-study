@@ -7,13 +7,14 @@
       "command": "/usr/bin/clang++",
       "args": [
         "-g",
+        "-Wall",
+        "-std=c++11", // 执行版本 c++17 c++2a等
         "${file}",
         "${fileDirname}/mylib/ding.cpp",
         "${fileDirname}/myclass/Complex.cpp",
         "${fileDirname}/myclass/DingTest.cpp",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}",
-        "-std=c++11" // 执行版本 c++17 c++2a等
+        "${fileDirname}/${fileBasenameNoExtension}"
       ],
       "options": {
         "cwd": "/usr/bin"

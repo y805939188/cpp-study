@@ -39,6 +39,8 @@
     "__threading_support": "cpp",
     "chrono": "cpp",
     "__functional_base": "cpp",
-    "iomanip": "cpp"
+    "iomanip": "cpp",
+    "queue": "cpp",
+    "thread": "cpp"
   }
 }
