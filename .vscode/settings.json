@@ -41,6 +41,10 @@
     "__functional_base": "cpp",
     "iomanip": "cpp",
     "queue": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "type_traits": "cpp",
+    "stack": "cpp",
+    "__functional_03": "cpp",
+    "__node_handle": "cpp"
   }
 }
