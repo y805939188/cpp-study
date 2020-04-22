@@ -14,7 +14,7 @@
         // "${fileDirname}/myclass/Complex.cpp",
         // "${fileDirname}/myclass/DingTest.cpp",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "${fileDirname}/output/${fileBasenameNoExtension}"
       ],
       "options": {
         "cwd": "/usr/bin"
@@ -27,7 +27,7 @@
     {
       "label": "compileRun",
       "type": "shell",
-      "command": "${fileDirname}/${fileBasenameNoExtension}",
+      "command": "${fileDirname}/output/${fileBasenameNoExtension}",
       //依赖compile task(刚刚创建的那个 ，执行该task之前先执行build
       "dependsOn": [ "compile" ],
       "presentation": {
