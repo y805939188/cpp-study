@@ -11,7 +11,7 @@
       // workspaceFolder 表示当前打开的根目录
       // fileBasenameNoExtension 表示当前被激活的文件不带后缀的格式
       // 比如当前正鼠标聚焦在 a.cpp 那fileBasenameNoExtension就是a
-      "program": "${workspaceFolder}/${fileBasenameNoExtension}", // 对应要调试那个文件
+      "program": "${workspaceFolder}/output/${fileBasenameNoExtension}", // 对应要调试那个文件
       "args": [],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "compile" // 会根据这个label把可执行文件给build出来
