@@ -45,6 +45,19 @@
     "type_traits": "cpp",
     "stack": "cpp",
     "__functional_03": "cpp",
-    "__node_handle": "cpp"
+    "__node_handle": "cpp",
+    "__locale": "cpp",
+    "__mutex_base": "cpp",
+    "complex": "cpp",
+    "exception": "cpp",
+    "memory_resource": "cpp",
+    "limits": "cpp",
+    "mutex": "cpp",
+    "optional": "cpp",
+    "ratio": "cpp",
+    "stdexcept": "cpp",
+    "system_error": "cpp",
+    "tuple": "cpp",
+    "typeinfo": "cpp"
   }
 }
