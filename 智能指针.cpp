@@ -1,6 +1,7 @@
 #include "iostream"
 #include "string"
 #include "vector"
+#include "memory" // 这个库里头有auto_ptr智能指针
 using namespace std;
 
 /**
@@ -56,11 +57,37 @@ Test2& Test2::operator =(const Test2 &rhs) {
   return *this;
 }
 
+
+
+
+
+// 智能指针
+void demo1() {
+  int* p = new int(66);
+  auto_ptr<int> a1(p);
+  auto_ptr<double> a2(new double);
+  *a2 = 88.88;
+  cout << *a1 << endl; // 66
+  cout << *a2 << endl; // 88.88
+};
+
 int main(void) {
   int* p1 = new int(66);
   Test test1(p1);
   delete p1; // 由于Test还有个num指针也指向66 所以num变成野指针(悬垂指针)了就
   // cout << test1.get_num() << endl;
+
+
+
+
+  /**
+   * c++ 中提供好的智能指针
+   * std::auto_ptr(标准模板库中的智能指针)
+   * Boost库的智能指针
+   * ATL框架的智能指针(微软平台的开发框架)
+   */
+
+  demo1();
 
   return 0;
 }
