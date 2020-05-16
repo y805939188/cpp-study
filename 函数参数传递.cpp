@@ -52,7 +52,7 @@ void test3(int& x) {
 // 如果执行find_char(str, 'g')可以
 // 但是不能直接find_char("ding test", 'g')
 // 除非给find_char的签名变成find_char(const string &s, char c)
-string::size_type find_char(string &s, char c) {
+string::size_type find_char(const string &s, char c) {
   string::size_type i = 0;
   while (i != s.size() && s[i] != c) i++;
   return i;
