@@ -59,6 +59,21 @@
     "system_error": "cpp",
     "tuple": "cpp",
     "typeinfo": "cpp",
-    "__tuple": "cpp"
+    "__tuple": "cpp",
+    "__errc": "cpp",
+    "__nullptr": "cpp",
+    "bit": "cpp",
+    "cctype": "cpp",
+    "cmath": "cpp",
+    "cstdarg": "cpp",
+    "cstdint": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cstring": "cpp",
+    "ctime": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "numeric": "cpp",
+    "set": "cpp"
   }
 }
