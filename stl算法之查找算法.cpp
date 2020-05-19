@@ -402,7 +402,7 @@ int main(void) {
    */
   // random_shuffle 传个begin和end迭代器就行
   // 如果容器里的数除以2等于0就放到左边 否则就放到右边
-  partition(list66.begin(), list66.end(), not1(bind2nd(modulus<int>(), 2)));
+  // partition(list66.begin(), list66.end(), not1(bind2nd(modulus<int>(), 2)));
 
   // stable_partition() // 稳定的分区算法
 
