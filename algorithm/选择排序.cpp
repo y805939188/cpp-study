@@ -4,6 +4,12 @@
 
 using namespace std;
 
+/**
+ * 选择排序是从0位开始往后找
+ * 先假装最开始的0位是最小的
+ * 在之后的遍历中如果发现谁比他还小就把这个数的index记录下来
+ * 最后遍历完一次之后把当前为何记录下来的那位交换
+ */
 
 template<typename T>
 void selectionSort(T& arr) { // 这里传递一个数组进来之后 arr会退化成一个指针 也就是 32位下sizeof 4 64位下8
