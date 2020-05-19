@@ -4,6 +4,8 @@
 #include "list"
 #include "algorithm"
 #include "deque"
+#include "set"
+#include "functional"
 using namespace std;
 
 /**
@@ -188,6 +190,270 @@ int main(void) {
   double res2 = for_each(li.begin(), li.end(), Test());
   cout << res.value() << endl; // 666.888
   cout << res2 << endl; // 666.888
+
+
+
+
+
+  /**
+   * 区间比较算法
+   * equal() 比较两个区间是否所有的元素都相等
+   * mismatch() 查找两个容器中第一个不相等的数据
+   * lexicographical_compare() 比较第一个区间是否比第二个区间小
+   */
+
+  vector<int> vect3;
+  list<int> li3;
+  for (int i = 0; i < 9; i++) vect3.insert(vect3.end(), i);
+  for (int i = 0; i < 9; i++) li3.insert(li3.end(), i);
+
+  if (equal(vect3.begin(), vect3.end(), li3.begin())) {
+    cout << "两个区间相等" << endl;
+  }
+
+  if (equal(vect3.begin(), vect3.end(), li3.begin()), [](int ele1, int ele2) { return true; }) {
+    cout << "第四个参数可以写谓词" << endl;
+  }
+
+
+  vect3[6] = 8;
+  pair<vector<int>::iterator, list<int>::iterator> values;
+  // 这个算法的返回值是一对儿迭代器
+  // 第一个表示第一个区间第一个不相等的迭代器 第二个表示第二个区间的第一个不相等的迭代器
+  values = mismatch(vect3.begin(), vect3.end(), li3.begin());
+  if (values.first == vect3.end()) {
+    cout << "没有找到不相等" << endl;
+  } else {
+    cout << *(values.first) << endl; // 8
+  }
+  // 第四个参数可以传谓词 less_equal表示第一个参数小于等于第二个参数
+  values = mismatch(vect3.begin(), vect3.end(), li3.begin(), less_equal<int>());
+
+
+  // 这个算法检查第一个区间是否小于第二个区间
+  bool res1 = lexicographical_compare(vect3.begin(), vect3.end(), li3.begin(), li3.end());
+  cout << res1 << endl;
+
+
+
+
+
+  /**
+   * copy()
+   * copy_backward()
+   * 修改性算法 把数据从一个容器中拷贝到另外一个容器中
+   * 或在同一个容器中进行拷贝
+   */
+  vector<int> vect6(vect3.size() * 2);
+  copy(li3.begin(), li3.end(), vect6.begin());
+  for_each(vect6.begin(), vect6.end(), [](int a) { cout << a; });
+  cout << endl;
+  copy_backward(li3.begin(), li3.end(), vect6.begin());
+  for_each(vect6.begin(), vect6.end(), [](int a) { cout << a; });
+  cout << endl;
+
+
+
+
+
+
+
+  /**
+   * transform() 算法
+   * 把一个集合区间中的元素转换并复制到另一个区间中
+   * transform(b1, e1, b2, op) 把b1转换拷贝进b2
+   * transform(b1, e1, b2, b3, op) 把b1和b2融合转换拷贝进b3
+   * b2是目标集合 如果目标集合填了b1自己的话 那效果基本等同于for_each
+   * 
+   * for_each() 也是修改性算法
+   * 速度快 不灵活
+   * 
+   * transform()
+   * 速度慢 非常灵活
+   */
+
+  // negate是预定义的函数对象 表示取负
+  transform(vect3.begin(), vect3.end(), vect3.begin(), negate<int>());
+
+
+
+
+
+
+
+  /**
+   * 交换算法
+   * 
+   */
+  
+  list<int>::iterator pos66 = swap_ranges(vect3.begin(), vect3.end(), li3.begin()); // 把vect3和li3中的元素进行交换
+  // pos66 表示第二个区间中没有进行交换的元素
+
+
+
+
+  /**
+   * 填充新值算法
+   * fill()
+   * fill_n()
+   * generate()
+   * generate_n()
+   */
+
+  list<string> slist;
+  slist.push_back("ding1");
+
+  fill(slist.begin(), slist.end(), "ding2");
+  for_each(slist.begin(), slist.end(), [](string a) { cout << a << endl; }); // ding2 会覆盖之前的
+  // 如果之前的容器中一个数据都没有的话就必须用fill_n
+
+
+
+
+
+
+
+  /**
+   * 替换算法
+   * replace()
+   * replace_if()
+   * replace_copy()
+   * replace_copy_if()
+   */
+
+  replace(slist.begin(), slist.end(), "ding2", "ding3"); // 把slist中的ding2都换成ding3
+  cout << slist.back() << endl; // ding3
+
+  // if是可以使用函数对象的
+  // replace_if(slist.begin(), slist.end(), bind2nd(less<int>, 5), 0); // 把小于5的都换成0
+
+  // replace_copy是一遍替换一遍拷贝进第三个参数中
+  // ostream_iterator 表示输出流的迭代器
+  replace_copy(slist.begin(), slist.end(), ostream_iterator<string>(cout, " "), "ding3", "ding8");
+  // replace_copy_if 是可以在第四个参数那里写个函数对象
+
+
+
+
+
+
+  /**
+   * 删除算法
+   * remove()
+   * remove_if()
+   * 不是真正的删除 而是把后面的元素往前移动从而覆盖掉被删除的 所以长度没变
+   */
+  list<int> ding_test;
+  for (size_t i = 0; i < 9; i++) ding_test.push_back(i);
+  list<int>::iterator end = remove(ding_test.begin(), ding_test.end(), 6);
+  // end ding_test被覆盖后它后面的都往前挪 end就是挪完后最后的数的那个位置
+  cout << distance(end, ding_test.end()) << endl; // 能得到删除了多少
+  cout << sizeof(ding_test) << endl; // 24
+  for_each(ding_test.begin(), ding_test.end(), [](int a) { cout << a; });
+  cout << sizeof(ding_test) << endl; // 24
+  cout << endl; // 会把3覆盖掉
+  ding_test.erase(end, ding_test.end()); // erase 是真正地删除
+
+  // 把原容器中的数据删除同时复制到别的容器中
+  // multiset<int> iset;
+  // remove_copy_if(
+  //   ding_test.begin(),
+  //   ding_test.end(),
+  //   inserter(iset, iset.end()),
+  //   bind2nd(less<int>, 6)); // 把小于6的数据remove掉并复制到iset中
+
+  /**
+   * 删除算法
+   * unique()
+   * unique_copy()
+   * 都可以传谓词 没写if只是因为名称不够规范
+   */
+  int arr1[] = {1,1,2,2,3,6,7,7,8,8,8,9};
+  int size = sizeof(arr1) / sizeof(arr1[0]);
+  list<int> list66;
+  copy(arr1, arr1 + size, back_inserter(list66));
+  list<int>::iterator pos;
+  pos = unique(list66.begin(), list66.end());
+  for_each(list66.begin(), list66.end(), [](int a) { cout << a; });
+
+
+
+
+
+
+  /**
+   * 排列组合算法
+   * next_permutation()
+   * prev_permutation()
+   */
+  while (next_permutation(list66.begin(), list66.end())) {
+    cout << "如果没有下一个排列了就会返回false 有下一个组合的话就返回true" << endl;
+  };
+
+
+
+
+
+  /**
+   * 重排算法、分区算法
+   * random_shuffle()
+   * partition()
+   * stable_partition()
+   */
+  // random_shuffle 传个begin和end迭代器就行
+  // 如果容器里的数除以2等于0就放到左边 否则就放到右边
+  partition(list66.begin(), list66.end(), not1(bind2nd(modulus<int>(), 2)));
+
+  // stable_partition() // 稳定的分区算法
+
+
+
+
+
+
+  /**
+   * 排序算法
+   * sort()
+   * stable_sort()
+   * 可对所有的容器进行排序
+   * 不过不能用于list列表 因为列表不能使用随机存取迭代器
+   * 所以list有个独立的成员函数sort()
+   */
+  sort(ideq.begin(), ideq.end()); // 从小到大排序
+  sort(ideq.begin(), ideq.end(), greater<int>()); // 从大到小排序
+  // stable_sort // 比sort稍微稳一点
+
+
+  /**
+   * partial_sort 局部排序
+   * 比如有10000个数据 只对前100排
+   * 比上面sort快
+   */
+  partial_sort(ideq.begin(), ideq.begin() + 6, ideq.end()); // 只对前6个排序
+  partial_sort(ideq.begin(), ideq.begin() + 6, ideq.end(), greater<int>()); // 只对前6个从大到小排序
+
+
+
+
+  /**
+   * nth_element
+   * 根据第n个元素排序
+   * 比如排序完把最小的6个找出来
+   */
+  nth_element(ideq.begin(), ideq.begin() + 6, ideq.end()); // 就把最小的6个排序出来
+  nth_element(ideq.begin(), ideq.begin() - 6, ideq.end()); // 就把最大的6个排序出来
+
+
+
+
+
+  /**
+   * heap算法
+   * make_heap()
+   * push_heap()
+   * pop_heap()
+   * sort_pop()
+   */
 
   return 0;
 }
