@@ -43,7 +43,8 @@
 					"source" : "hello-gakki",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						2
 					]
 				}
 			],
@@ -61,7 +62,8 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2
 					]
 				}
 			],
@@ -70,15 +72,22 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "cpp-compiler::@e3630f4be4d01ebd2d97",
-					"jsonFile" : "target-cpp-compiler-Debug-40be71142d8113deb8f0.json",
+					"jsonFile" : "target-cpp-compiler-Debug-ceaf8952be65e9e48de5.json",
 					"name" : "cpp-compiler",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "say-hello::@5c20bfcd32ac02acf58a",
-					"jsonFile" : "target-say-hello-Debug-78bbd79885be0a4d05a1.json",
+					"jsonFile" : "target-say-hello-Debug-d04a52eaee0a96c77fb7.json",
 					"name" : "say-hello",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test-compiler::@e3630f4be4d01ebd2d97",
+					"jsonFile" : "target-test-compiler-Debug-d937e144f685e1593d79.json",
+					"name" : "test-compiler",
 					"projectIndex" : 0
 				}
 			]

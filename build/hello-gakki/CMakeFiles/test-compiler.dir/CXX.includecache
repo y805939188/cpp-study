@@ -6,13 +6,7 @@
 
 #IncludeRegexTransform: 
 
-../say-hello/src/say-hello/hello.h
+/Users/4paradigm/Desktop/cpp-compiler2/hello-gakki/main-test.cpp
 iostream
--
-
-/Users/4paradigm/Desktop/cpp-compiler2/hello-gakki/main.cpp
-iostream
--
-say-hello/hello.h
--
+/Users/4paradigm/Desktop/cpp-compiler2/hello-gakki/iostream
 

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "../lib/libsay-hello.a"
-  "../lib/libsay-hello.pdb"
   "CMakeFiles/say-hello.dir/src/say-hello/hello.cpp.o"
+  "libsay-hello.a"
+  "libsay-hello.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

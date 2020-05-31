@@ -1,0 +1,20 @@
+Start testing: May 31 17:40 CST
+----------------------------------------------------------
+1/1 Testing: my-test
+1/1 Test: my-test
+Command: "/Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki/test-compiler"
+Directory: /Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki
+"my-test" start time: May 31 17:40 CST
+Output:
+----------------------------------------------------------
+ding
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Pass Reason:
+Required regular expression found. Regex=[ding]
+"my-test" end time: May 31 17:40 CST
+"my-test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 31 17:40 CST

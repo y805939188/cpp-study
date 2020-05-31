@@ -98,6 +98,17 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/Applications/CMake.app/Contents/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
 	cd /Users/4paradigm/Desktop/cpp-compiler2/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/4paradigm/Desktop/cpp-compiler2/build/CMakeFiles /Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki/CMakeFiles/progress.marks
@@ -131,6 +142,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+hello-gakki/CMakeFiles/test-compiler.dir/rule:
+	cd /Users/4paradigm/Desktop/cpp-compiler2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hello-gakki/CMakeFiles/test-compiler.dir/rule
+.PHONY : hello-gakki/CMakeFiles/test-compiler.dir/rule
+
+# Convenience name for target.
+test-compiler: hello-gakki/CMakeFiles/test-compiler.dir/rule
+
+.PHONY : test-compiler
+
+# fast build rule for target.
+test-compiler/fast:
+	cd /Users/4paradigm/Desktop/cpp-compiler2/build && $(MAKE) $(MAKESILENT) -f hello-gakki/CMakeFiles/test-compiler.dir/build.make hello-gakki/CMakeFiles/test-compiler.dir/build
+.PHONY : test-compiler/fast
+
+# Convenience name for target.
 hello-gakki/CMakeFiles/cpp-compiler.dir/rule:
 	cd /Users/4paradigm/Desktop/cpp-compiler2/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hello-gakki/CMakeFiles/cpp-compiler.dir/rule
 .PHONY : hello-gakki/CMakeFiles/cpp-compiler.dir/rule
@@ -144,6 +170,33 @@ cpp-compiler: hello-gakki/CMakeFiles/cpp-compiler.dir/rule
 cpp-compiler/fast:
 	cd /Users/4paradigm/Desktop/cpp-compiler2/build && $(MAKE) $(MAKESILENT) -f hello-gakki/CMakeFiles/cpp-compiler.dir/build.make hello-gakki/CMakeFiles/cpp-compiler.dir/build
 .PHONY : cpp-compiler/fast
+
+main-test.o: main-test.cpp.o
+
+.PHONY : main-test.o
+
+# target to build an object file
+main-test.cpp.o:
+	cd /Users/4paradigm/Desktop/cpp-compiler2/build && $(MAKE) $(MAKESILENT) -f hello-gakki/CMakeFiles/test-compiler.dir/build.make hello-gakki/CMakeFiles/test-compiler.dir/main-test.cpp.o
+.PHONY : main-test.cpp.o
+
+main-test.i: main-test.cpp.i
+
+.PHONY : main-test.i
+
+# target to preprocess a source file
+main-test.cpp.i:
+	cd /Users/4paradigm/Desktop/cpp-compiler2/build && $(MAKE) $(MAKESILENT) -f hello-gakki/CMakeFiles/test-compiler.dir/build.make hello-gakki/CMakeFiles/test-compiler.dir/main-test.cpp.i
+.PHONY : main-test.cpp.i
+
+main-test.s: main-test.cpp.s
+
+.PHONY : main-test.s
+
+# target to generate assembly for a file
+main-test.cpp.s:
+	cd /Users/4paradigm/Desktop/cpp-compiler2/build && $(MAKE) $(MAKESILENT) -f hello-gakki/CMakeFiles/test-compiler.dir/build.make hello-gakki/CMakeFiles/test-compiler.dir/main-test.cpp.s
+.PHONY : main-test.cpp.s
 
 main.o: main.cpp.o
 
@@ -180,7 +233,12 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... cpp-compiler"
+	@echo "... test-compiler"
+	@echo "... main-test.o"
+	@echo "... main-test.i"
+	@echo "... main-test.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

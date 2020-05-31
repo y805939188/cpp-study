@@ -1,1 +1,1 @@
-/usr/bin/clang++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/cpp-compiler.dir/main.cpp.o  -o ../bin/cpp-compiler  ../lib/libsay-hello.a 
+/usr/bin/clang++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/cpp-compiler.dir/main.cpp.o  -o cpp-compiler  ../say-hello/libsay-hello.a 

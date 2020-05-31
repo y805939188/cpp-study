@@ -98,6 +98,17 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/Applications/CMake.app/Contents/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/4paradigm/Desktop/cpp-compiler2/build/CMakeFiles /Users/4paradigm/Desktop/cpp-compiler2/build/CMakeFiles/progress.marks
@@ -144,6 +155,19 @@ say-hello/fast:
 .PHONY : say-hello/fast
 
 #=============================================================================
+# Target rules for targets named test-compiler
+
+# Build rule for target.
+test-compiler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test-compiler
+.PHONY : test-compiler
+
+# fast build rule for target.
+test-compiler/fast:
+	$(MAKE) $(MAKESILENT) -f hello-gakki/CMakeFiles/test-compiler.dir/build.make hello-gakki/CMakeFiles/test-compiler.dir/build
+.PHONY : test-compiler/fast
+
+#=============================================================================
 # Target rules for targets named cpp-compiler
 
 # Build rule for target.
@@ -164,8 +188,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... cpp-compiler"
 	@echo "... say-hello"
+	@echo "... test-compiler"
 .PHONY : help
 
 

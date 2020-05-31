@@ -94,6 +94,7 @@ clean: hello-gakki/clean
 # Directory level rules for directory hello-gakki
 
 # Recursive "all" directory target.
+hello-gakki/all: hello-gakki/CMakeFiles/test-compiler.dir/all
 hello-gakki/all: hello-gakki/CMakeFiles/cpp-compiler.dir/all
 
 .PHONY : hello-gakki/all
@@ -104,6 +105,7 @@ hello-gakki/preinstall:
 .PHONY : hello-gakki/preinstall
 
 # Recursive "clean" directory target.
+hello-gakki/clean: hello-gakki/CMakeFiles/test-compiler.dir/clean
 hello-gakki/clean: hello-gakki/CMakeFiles/cpp-compiler.dir/clean
 
 .PHONY : hello-gakki/clean
@@ -152,6 +154,33 @@ say-hello: say-hello/CMakeFiles/say-hello.dir/rule
 say-hello/CMakeFiles/say-hello.dir/clean:
 	$(MAKE) $(MAKESILENT) -f say-hello/CMakeFiles/say-hello.dir/build.make say-hello/CMakeFiles/say-hello.dir/clean
 .PHONY : say-hello/CMakeFiles/say-hello.dir/clean
+
+#=============================================================================
+# Target rules for target hello-gakki/CMakeFiles/test-compiler.dir
+
+# All Build rule for target.
+hello-gakki/CMakeFiles/test-compiler.dir/all:
+	$(MAKE) $(MAKESILENT) -f hello-gakki/CMakeFiles/test-compiler.dir/build.make hello-gakki/CMakeFiles/test-compiler.dir/depend
+	$(MAKE) $(MAKESILENT) -f hello-gakki/CMakeFiles/test-compiler.dir/build.make hello-gakki/CMakeFiles/test-compiler.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/4paradigm/Desktop/cpp-compiler2/build/CMakeFiles --progress-num=5,6 "Built target test-compiler"
+.PHONY : hello-gakki/CMakeFiles/test-compiler.dir/all
+
+# Build rule for subdir invocation for target.
+hello-gakki/CMakeFiles/test-compiler.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/4paradigm/Desktop/cpp-compiler2/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hello-gakki/CMakeFiles/test-compiler.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/4paradigm/Desktop/cpp-compiler2/build/CMakeFiles 0
+.PHONY : hello-gakki/CMakeFiles/test-compiler.dir/rule
+
+# Convenience name for target.
+test-compiler: hello-gakki/CMakeFiles/test-compiler.dir/rule
+
+.PHONY : test-compiler
+
+# clean rule for target.
+hello-gakki/CMakeFiles/test-compiler.dir/clean:
+	$(MAKE) $(MAKESILENT) -f hello-gakki/CMakeFiles/test-compiler.dir/build.make hello-gakki/CMakeFiles/test-compiler.dir/clean
+.PHONY : hello-gakki/CMakeFiles/test-compiler.dir/clean
 
 #=============================================================================
 # Target rules for target hello-gakki/CMakeFiles/cpp-compiler.dir

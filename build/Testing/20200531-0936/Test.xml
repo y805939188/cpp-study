@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20200531-0936-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.17.2"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Mac OS X"
+	Hostname="localhost"
+	OSRelease="10.15.1"
+	OSVersion="19B88"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="61"
+	ProcessorCacheSize="32768"
+	NumberOfLogicalCPU="4"
+	NumberOfPhysicalCPU="2"
+	TotalVirtualMemory="2048"
+	TotalPhysicalMemory="8192"
+	LogicalProcessorsPerPhysical="8"
+	ProcessorClockFrequency="2700"
+	>
+	<Testing>
+		<StartDateTime>May 31 17:40 CST</StartDateTime>
+		<StartTestTime>1590918012</StartTestTime>
+		<TestList>
+			<Test>./hello-gakki/my-test</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>my-test</Name>
+			<Path>./hello-gakki</Path>
+			<FullName>./hello-gakki/my-test</FullName>
+			<FullCommandLine>/Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki/test-compiler</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.00925833</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Pass Reason">
+					<Value>Required regular expression found. Regex=[ding]</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki/test-compiler</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>ding
+</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>May 31 17:40 CST</EndDateTime>
+		<EndTestTime>1590918012</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

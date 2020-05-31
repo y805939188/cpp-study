@@ -1,8 +1,12 @@
 /Users/4paradigm/Desktop/cpp-compiler2/build/CMakeFiles/rebuild_cache.dir
 /Users/4paradigm/Desktop/cpp-compiler2/build/CMakeFiles/edit_cache.dir
+/Users/4paradigm/Desktop/cpp-compiler2/build/CMakeFiles/test.dir
+/Users/4paradigm/Desktop/cpp-compiler2/build/say-hello/CMakeFiles/test.dir
 /Users/4paradigm/Desktop/cpp-compiler2/build/say-hello/CMakeFiles/rebuild_cache.dir
 /Users/4paradigm/Desktop/cpp-compiler2/build/say-hello/CMakeFiles/edit_cache.dir
 /Users/4paradigm/Desktop/cpp-compiler2/build/say-hello/CMakeFiles/say-hello.dir
 /Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki/CMakeFiles/rebuild_cache.dir
 /Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki/CMakeFiles/edit_cache.dir
+/Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki/CMakeFiles/test.dir
+/Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki/CMakeFiles/test-compiler.dir
 /Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki/CMakeFiles/cpp-compiler.dir

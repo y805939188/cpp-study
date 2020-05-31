@@ -54,5 +54,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "say-hello/CMakeFiles/say-hello.dir/DependInfo.cmake"
+  "hello-gakki/CMakeFiles/test-compiler.dir/DependInfo.cmake"
   "hello-gakki/CMakeFiles/cpp-compiler.dir/DependInfo.cmake"
   )
