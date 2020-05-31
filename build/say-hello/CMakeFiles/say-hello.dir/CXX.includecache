@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/4paradigm/Desktop/cpp-compiler2/say-hello/src/say-hello/hello.cpp
+iostream
+-
+hello.h
+/Users/4paradigm/Desktop/cpp-compiler2/say-hello/src/say-hello/hello.h
+
+/Users/4paradigm/Desktop/cpp-compiler2/say-hello/src/say-hello/hello.h
+

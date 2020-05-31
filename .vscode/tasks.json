@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // {
+    //   "type": "shell",
+    //   "label": "compile",
+    //   "command": "/usr/bin/clang++",
+    //   "args": [
+    //     "-g",
+    //     "-Wall",
+    //     "-std=c++11", // 执行版本 c++17 c++2a等
+    //     "${file}",
+    //     // "${fileDirname}/mylib/ding.cpp",
+    //     // "${fileDirname}/myclass/Complex.cpp",
+    //     // "${fileDirname}/myclass/DingTest.cpp",
+    //     "-o",
+    //     "${workspaceFolder}/output/${fileBasenameNoExtension}"
+    //   ],
+    //   "options": {
+    //     "cwd": "/usr/bin"
+    //   },
+    //   "problemMatcher": [
+    //     "$gcc"
+    //   ],
+    //   "group": "build"
+    // },
+    {
+      "label": "compileRun",
+      "type": "shell",
+      "command": "cmake.outline.configureAll",
+      //依赖compile task(刚刚创建的那个 ，执行该task之前先执行build
+      // "dependsOn": [ "compile" ],
+      // "presentation": {
+      //   "echo": true,
+      //   "reveal": "always",
+      //   //自动聚焦
+      //   "focus": true,
+      //   //共享控制台，利用之前的控制台，并不重新创建
+      //   "panel": "shared",
+      //   "showReuseMessage": true,
+      //   //启动之前清理控制台输出
+      //   "clear": true
+      // }
+    }
+  ]
+}

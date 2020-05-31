@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/Users/4paradigm/Desktop/cpp-compiler2/build/say-hello",
+  "command": "/usr/bin/clang++   -I/Users/4paradigm/Desktop/cpp-compiler2/say-hello/src  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/say-hello.dir/src/say-hello/hello.cpp.o -c /Users/4paradigm/Desktop/cpp-compiler2/say-hello/src/say-hello/hello.cpp",
+  "file": "/Users/4paradigm/Desktop/cpp-compiler2/say-hello/src/say-hello/hello.cpp"
+},
+{
+  "directory": "/Users/4paradigm/Desktop/cpp-compiler2/build/hello-gakki",
+  "command": "/usr/bin/clang++   -I/Users/4paradigm/Desktop/cpp-compiler2/say-hello/src  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk   -o CMakeFiles/cpp-compiler.dir/main.cpp.o -c /Users/4paradigm/Desktop/cpp-compiler2/hello-gakki/main.cpp",
+  "file": "/Users/4paradigm/Desktop/cpp-compiler2/hello-gakki/main.cpp"
+}
+]
