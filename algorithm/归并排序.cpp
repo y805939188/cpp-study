@@ -61,24 +61,15 @@ void _merge(T arr[], int l, int mid, int r) {
   }
 
   int kl = 0; // 记录下一个的位置
-  int kr = len / 2 + 1;
+  int kr = len / 2;
   for (int j = 0; j < len; j++) {
-    if (kl >= len / 2 + 1) {
-      for (int t = kr; t < len; t++) {
-        arr[j] = temp[kr];
-        j++;
-        kr++;
-      }
-      break;
+    if (kl >= len / 2) {
+      arr[j] = temp[kr];
+      kr++;
     } else if (kr >= len) {
-      for (int t = 0; t < len / 2 + 1; t++) {
-        arr[j] = temp[kl];
-        j++;
-        kl++;
-      }
-      break;
-    }
-    if (temp[kl] <= temp[kr]) {
+      arr[j] = temp[kl];
+      kl++;
+    } else if (temp[kl] <= temp[kr]) {
       arr[j] = temp[kl];
       kl++;
     } else {
@@ -110,5 +101,9 @@ int main(void) {
   int arr[] = { 5, 7, 3, 6, 1, 9, 8, 0 };
   mergeSort<int>(arr, 8);
   for_each(arr, arr + 8, [](int a) { cout << a << " "; });
+  // int arr[] = {1, 3, 2, 6};
+
+  // _merge<int>(arr, 0, 2, 3);
+  // for_each(arr, arr + 4, [](int a) { cout << a << " "; });
   return 0;
 }
