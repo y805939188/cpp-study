@@ -74,6 +74,7 @@
     "cwchar": "cpp",
     "cwctype": "cpp",
     "numeric": "cpp",
-    "set": "cpp"
+    "set": "cpp",
+    "__undef_macros": "cpp"
   }
 }
