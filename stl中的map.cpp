@@ -81,5 +81,19 @@ int main(void) {
   // 把multimap中的最上面的key为3的一直到最下面的key为3的都删掉
   m2.erase(m2.lower_bound(3), m2.upper_bound(3));
 
+  cout << "--------test copy--------" << endl;
+  map<char, int> m111;
+  m111['a']++;
+  cout << m111['a'] << endl; // 1
+  map<char, int> m222;
+  m222 = m111;
+  cout << m222['a'] << endl; // 1
+  m222['a']--;
+  cout << m222['a'] << endl; // 0
+  cout << m111['a'] << endl; // 1
+
+  cout << m222.count('a') << endl; // 1
+  cout << m222.count('b') << endl; // 0
+
   return 0;
 }
